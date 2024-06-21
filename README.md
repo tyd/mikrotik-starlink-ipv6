@@ -16,7 +16,7 @@ Key features:
 1. Blank IPv6 sections:
     - DHCP Client
     - DHCP Server
-    - DCHP Relay
+    - DHCP Relay
     - Firewall and Address List
     - Pool
     - No global addresses defined (link-local are ok)
