@@ -1,32 +1,36 @@
-
 # mikrotik-starlink-ipv6
+
 A quick and easy IPv6 configuration for Mikrotik and Starlink
 
 The overall goal of this is to set a couple variables, execute the script and have working IPv6 from Starlink on your MikroTik router and the rest of your network.
 
 Key features:
+
 - Routing is automatic, no need for a ::0/0 default route.
 - Sane firewall rules, feel free to modify to fit your needs.
 - No need for a IPv6 DHCP server. Network clients with IPv6 enabled should get globally routable addresses automatically.
 - Passes https://ipv6-test.com/ test with full 20 out of 20 score
 
 ## Prerequisites
+
 1. Starlink Internet
 1. MikroTik router with RouterOS 7.7+
 1. Blank IPv6 sections:
-    - DHCP Client
-    - DHCP Server
-    - DHCP Relay
-    - Firewall and Address List
-    - Pool
-    - No global addresses defined (link-local are ok)
+   - DHCP Client
+   - DHCP Server
+   - DHCP Relay
+   - Firewall and Address List
+   - Pool
+   - No global addresses defined (link-local are ok)
 1. Working winbox or ssh access.
-    - For Mac users, you can use winbox via wine, [see section below](#winbox-on-mac).
+   - For Mac users, you can now dowload a native winbox [see section below](#winbox-on-mac).
 
 ## Configure IPv6
+
 The following commands can be executing using winbox terminal or ssh.
 
 ### Step 1 - Set Variables
+
 Two variables that must be set correctly for this to be successful. For me, I have Starlink plugged in to `ether1` on my router. Additionally, I have my LAN interface set to my main `bridge`. Compare these values to your Mikrotik configuration and update as needed.
 
 ```sh
@@ -36,7 +40,7 @@ Two variables that must be set correctly for this to be successful. For me, I ha
 
 ### Step 2 - Execute Script
 
-The order here is important, *do not change it*. After activating the DHCP client, there is a 5 second delay to allow it time to bind. Later parts of the script are dependent upon values that only become available after the client is in a bound state.
+The order here is important, _do not change it_. After activating the DHCP client, there is a 5 second delay to allow it time to bind. Later parts of the script are dependent upon values that only become available after the client is in a bound state.
 
 ```sh
 /ipv6 settings
@@ -87,9 +91,7 @@ set autonomous=yes preferred-lifetime=10m valid-lifetime=15m
 ```
 
 ## Winbox on Mac
-Fortunately, the great winbox application can be run on a Mac quite easily with the help of [Homebrew](https://brew.sh/) and [Wine](https://www.winehq.org/).
 
-1. ```brew install wine-stable```
-2. Download latest [winbox](https://mt.lv/winbox64)
-3. ```wine64 winbox.exe```
+Fortunately, the great winbox application is now native on Mac.
 
+Select MacOS in the dropdown for the latest 4.0beta version on [MikroTik Routers and Wireless - Software](https://mikrotik.com/download)
